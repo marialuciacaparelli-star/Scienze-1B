@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benvenuti in prima – Scienze</title>
+<style>
+:root{--bg:#10202a;--fg:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10202a}}
+:root[data-theme="dark"]{--bg:#10202a}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column}
+.stage{flex:1;position:relative;overflow:hidden}
+.s{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:5vmin 8vw;box-sizing:border-box;background-size:200% 200%;animation:bg 8s ease infinite}
+.s.on{display:flex}
+.s:nth-child(1){background-image:linear-gradient(135deg,#7b2ff7,#2196f3,#00c9a7)}
+.s:nth-child(2){background-image:linear-gradient(135deg,#ff7e5f,#feb47b,#ff5fa2)}
+.s:nth-child(3){background-image:linear-gradient(135deg,#11998e,#38ef7d,#2196f3)}
+.s:nth-child(4){background-image:linear-gradient(135deg,#f7971e,#ffd200,#ff5f6d)}
+.s:nth-child(5){background-image:linear-gradient(135deg,#8e2de2,#4a00e0,#ff5fa2)}
+@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.3) rotate(-20deg)}70%{transform:scale(1.15)}100%{opacity:1;transform:none}}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(8deg)}}
+.s.on h1,.s.on h2{animation:up .7s both}
+.s.on li,.s.on .card,.s.on p{animation:up .6s both}
+.s.on li:nth-child(1){animation-delay:.4s}.s.on li:nth-child(2){animation-delay:.7s}.s.on li:nth-child(3){animation-delay:1s}.s.on li:nth-child(4){animation-delay:1.3s}
+.s.on .card{animation-delay:1.6s}
+h1{font-size:clamp(2.2rem,8vw,5rem);margin:.1em 0}
+h2{font-size:clamp(1.7rem,5.5vw,3.2rem);margin:0 0 .6em;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+p,li{font-size:clamp(1.1rem,2.7vw,1.8rem);line-height:1.4;text-shadow:0 1px 4px rgba(0,0,0,.25)}
+ul{list-style:none;padding:0;margin:0}
+li{background:rgba(255,255,255,.2);border-radius:14px;padding:.5em .9em;margin:.45em 0;backdrop-filter:blur(4px)}
+.card{background:rgba(255,255,255,.3);border-radius:16px;padding:.8em 1.2em;margin-top:1em;font-size:clamp(1.1rem,2.7vw,1.8rem)}
+.big{font-size:clamp(4.5rem,16vw,9rem);margin:0;animation:pop 1s both,fl 3s 1s ease-in-out infinite}
+.fl{position:absolute;font-size:clamp(2rem,6vw,4rem);opacity:.85;animation:fl 4s ease-in-out infinite}
+nav{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;color:#cfe3ec}
+button{background:#fff;color:#10202a;border:0;border-radius:10px;padding:10px 18px;font-size:1rem;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="s on"><span class="fl" style="top:8%;right:10%">⚗️</span><span class="fl" style="bottom:12%;left:8%;animation-delay:1s">🌿</span><p class="big">🔬</p><h1>Benvenuti in prima!</h1><p>Scienze: si parte per un viaggio di scoperta</p></section>
+<section class="s"><span class="fl" style="top:8%;right:8%">🧪</span><h2>Cosa scopriremo quest'anno</h2><ul><li>🔍 Il metodo scientifico</li><li>⚛️ La materia e le sue trasformazioni</li><li>🐾 Gli esseri viventi</li><li>🌳 Gli organismi e il loro ambiente</li></ul></section>
+<section class="s"><span class="fl" style="top:8%;right:8%">🥽</span><h2>Come lavoreremo</h2><ul><li>📓 Un quaderno e il libro</li><li>🧫 Laboratori e lavori di gruppo</li><li>💡 Didattica interattiva</li><li>📝 Verifiche da concordare: due scritte e un orale</li></ul></section>
+<section class="s"><span class="fl" style="top:8%;right:8%">🤝</span><h2>Le regole della nostra classe</h2><ul><li>💬 Rispetto per le persone e per le idee</li><li>✋ Alziamo la mano e ascoltiamo</li><li>🌱 Sbagliare va bene: è così che si impara</li><li>♻️ Curiamo materiali e ambiente</li></ul><div class="card">Quale regola aggiungereste voi?</div></section>
+<section class="s"><span class="fl" style="top:8%;right:8%">🚀</span><h2>Il mio scienziato interiore</h2><p>Su un biglietto scrivete:</p><ul><li>❓ Una domanda a cui vorreste una risposta</li><li>🔭 Una cosa che vorreste scoprire quest'anno</li></ul><div class="card">Grazie, e buon anno scolastico! 🌟</div></section>
+</div>
+<nav><button id="p">←</button><span id="c"></span><button id="n">→</button></nav>
+<script>
+var s=document.querySelectorAll('.s'),i=0;
+function go(k){i=Math.max(0,Math.min(s.length-1,k));s.forEach(function(e,j){e.classList.toggle('on',j===i)});document.getElementById('c').textContent=(i+1)+' / '+s.length}
+document.getElementById('p').onclick=function(){go(i-1)};document.getElementById('n').onclick=function(){go(i+1)};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' ')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+go(0);
+</script>
+</body>
+</html>
